@@ -61,7 +61,7 @@ int main (int argc, const char * argv[])
         imshow("video capture", img);
         if (waitKey(20) >= 0)
             break;
-        //cout << counter << endl;
+        //cout << counter << endl;	//print person count in terminal
         counter = 0;
     }
     return 0;

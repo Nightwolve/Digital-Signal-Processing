@@ -11,7 +11,7 @@ int counter;
 
 int main (int argc, const char * argv[])
 {
-    VideoCapture cap(CV_CAP_ANY);
+    VideoCapture cap(CV_CAP_ANY);		//capture live video from camera
     cap.set(CV_CAP_PROP_FPS, 30);
     cap.set(CV_CAP_PROP_FRAME_WIDTH, 320);
     cap.set(CV_CAP_PROP_FRAME_HEIGHT, 240);   
@@ -36,7 +36,7 @@ int main (int argc, const char * argv[])
         size_t i, j;
         for (i=0; i<found.size(); i++)
         {
-            counter = found.size();
+            counter = found.size();		//function to determine if person or not.
             Rect r = found[i];
             for (j=0; j<found.size(); j++)
                 if (j!=i && (r & found[j])==r)
@@ -46,7 +46,7 @@ int main (int argc, const char * argv[])
         }
         for (i=0; i<found_filtered.size(); i++)
         {
-        Rect r = found_filtered[i];
+        Rect r = found_filtered[i];			//draw rectangle when person is found
             r.x += cvRound(r.width*0.1);
         r.width = cvRound(r.width*0.8);
         r.y += cvRound(r.height*0.06);
@@ -54,7 +54,7 @@ int main (int argc, const char * argv[])
         rectangle(img, r.tl(), r.br(), cv::Scalar(0,255,0), 2);
         }
         {
-            ostringstream buf;
+            ostringstream buf;				//print person count on live feed
             buf << "People: " << counter;
             putText(img, buf.str(), Point(10, 30), FONT_HERSHEY_PLAIN, 1.5, Scalar(0, 0, 255), 2, LINE_AA);
         }
